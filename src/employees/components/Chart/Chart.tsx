@@ -1,13 +1,24 @@
 'use client'
-import { Tree, TreeNode } from 'react-organizational-chart'
 import { ChartItem } from './ChartItem'
 import { useEmployees } from '@/employees/hooks/useEmployees'
 import { useEffect, useState } from 'react'
 import { Modal } from '../Modal'
-import {
-  EmployeeClass,
-  EmployeeHierarchy,
-} from '@/employees/interfaces/Employee'
+import { EmployeeClass } from '@/employees/interfaces/Employee'
+import dynamic from 'next/dynamic'
+
+const Tree = dynamic(
+  () => import('react-organizational-chart').then(module => module.Tree),
+  {
+    ssr: false,
+  }
+)
+
+const TreeNode = dynamic(
+  () => import('react-organizational-chart').then(module => module.TreeNode),
+  {
+    ssr: false,
+  }
+)
 
 export const Chart = () => {
   const [showModal, setShowModal] = useState(false)
