@@ -26,7 +26,7 @@ export const Chart = () => {
   const [showModal, setShowModal] = useState(false)
   const [itemSelected, setItemSelected] = useState<EmployeeClass>()
 
-  const { employeeMutation } = useEmployees()
+  const { showToast } = useNotifications()
 
   const { Toaster } = useNotifications()
 
@@ -69,9 +69,7 @@ export const Chart = () => {
                         version={employee?.version}
                         className="bg-red-500"
                         onClick={() => {
-                          window.alert(
-                            "You can't edit a manager, please edit the employee"
-                          )
+                          showToast('You can not edit a manager', 'error')
                         }}
                       />
                     }
