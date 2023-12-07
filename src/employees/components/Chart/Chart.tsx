@@ -44,13 +44,8 @@ export const Chart = () => {
           }}
         />
       )}
-      {isLoading && (
-        <div className="w-screen h-screen bg-white bg-opacity-90 flex justify-center items-center z-30 absolute top-0 left-0">
-          <Spinner />
-        </div>
-      )}
       <div className="w-screen flex flex-col items-center justify-center p-5 h-screen bg-gray-100">
-        {!isLoading && employees && employees?.data?.length > 0 ? (
+        {employees && employees?.data?.length > 0 ? (
           <Tree
             lineWidth={'3px'}
             lineColor={'black'}
@@ -100,7 +95,9 @@ export const Chart = () => {
             })}
           </Tree>
         ) : (
-          <h2>{`There aren't any employees`}</h2>
+          <div className="w-screen h-screen bg-white bg-opacity-90 flex justify-center items-center z-30 absolute top-0 left-0">
+            <Spinner />
+          </div>
         )}
       </div>
 
