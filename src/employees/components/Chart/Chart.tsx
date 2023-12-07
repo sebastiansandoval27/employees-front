@@ -6,6 +6,7 @@ import { Modal } from '../Modal'
 import { EmployeeClass } from '@/employees/interfaces/Employee'
 import dynamic from 'next/dynamic'
 import { Spinner } from '@/components'
+import { useNotifications } from '@/components/hooks/useNotifications'
 
 const Tree = dynamic(
   () => import('react-organizational-chart').then(module => module.Tree),
@@ -25,8 +26,12 @@ export const Chart = () => {
   const [showModal, setShowModal] = useState(false)
   const [itemSelected, setItemSelected] = useState<EmployeeClass>()
 
+  const { employeeMutation } = useEmployees()
+
+  const { Toaster } = useNotifications()
+
   const {
-    queryEmployees: { data: employees, isLoading, refetch },
+    queryEmployees: { data: employees, refetch },
   } = useEmployees()
 
   useEffect(() => {
@@ -35,6 +40,7 @@ export const Chart = () => {
 
   return (
     <>
+      <Toaster />
       {showModal && (
         <Modal
           employee={itemSelected || ({} as EmployeeClass)}
@@ -44,7 +50,7 @@ export const Chart = () => {
           }}
         />
       )}
-      <div className="w-screen flex flex-col items-center justify-center p-5 h-screen bg-gray-100">
+      <div className="w-screen flex flex-col items-center justify-start pt-60 p-5 h-screen bg-gray-100">
         {employees && employees?.data?.length > 0 ? (
           <Tree
             lineWidth={'3px'}
@@ -56,15 +62,13 @@ export const Chart = () => {
               if (employee?.role === 'MANAGER') {
                 return (
                   <TreeNode
-                    key={employee?.id}
+                    key={`Manager-${employee?.name}`}
                     label={
                       <ChartItem
                         label={employee?.name}
                         version={employee?.version}
                         className="bg-red-500"
                         onClick={() => {
-                          // setShowModal(true)
-                          // setItemSelected(employee)
                           window.alert(
                             "You can't edit a manager, please edit the employee"
                           )
@@ -75,7 +79,7 @@ export const Chart = () => {
                     {employee?.managerHierarchy?.map(manager => {
                       return (
                         <TreeNode
-                          key={manager?.id}
+                          key={`Employee-${manager?.employee?.name}`}
                           label={
                             <ChartItem
                               label={manager?.employee?.name}

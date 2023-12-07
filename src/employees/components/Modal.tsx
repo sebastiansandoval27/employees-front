@@ -18,14 +18,14 @@ export const Modal: React.FC<ModalProps> = ({ employee, closeModal }) => {
   }
 
   useEffect(() => {
-    if (!employeeMutation.isLoading && employeeMutation.isSuccess) {
+    if (!employeeMutation.isPending && employeeMutation.isSuccess) {
       closeModal()
     }
-  }, [employeeMutation.isLoading, employeeMutation.isSuccess])
+  }, [employeeMutation.isPending, employeeMutation.isSuccess])
 
   return (
     <>
-      {employeeMutation.isLoading && (
+      {employeeMutation.isPending && (
         <div className="w-screen h-screen bg-white bg-opacity-90 flex justify-center items-center z-50 absolute top-0 left-0">
           <Spinner />
         </div>
@@ -54,7 +54,7 @@ export const Modal: React.FC<ModalProps> = ({ employee, closeModal }) => {
               disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed
               "
                 type="submit"
-                disabled={employeeMutation.isLoading}
+                disabled={employeeMutation.isPending}
               >
                 Set as Manager
               </button>
