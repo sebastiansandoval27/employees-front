@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { ReactQueryProvider } from '@/Providers/ReactQueryProvider'
-import { Header } from '@/employees'
+import { Footer, Header } from '@/employees'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,6 +23,7 @@ export default function RootLayout({
           <div className="flex flex-col items-center justify-center gap-5">
             <Header />
             {children}
+            <Footer />
           </div>
         </ReactQueryProvider>
       </body>

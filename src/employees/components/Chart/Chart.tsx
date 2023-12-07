@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { Modal } from '../Modal'
 import { EmployeeClass } from '@/employees/interfaces/Employee'
 import dynamic from 'next/dynamic'
+import { Spinner } from '@/components'
 
 const Tree = dynamic(
   () => import('react-organizational-chart').then(module => module.Tree),
@@ -43,14 +44,18 @@ export const Chart = () => {
           }}
         />
       )}
-      <div className="w-full min-h-screen flex flex-col items-center justify-start p-5">
-        {isLoading && <h2>Loading...</h2>}
+      {isLoading && (
+        <div className="w-screen h-screen bg-white bg-opacity-90 flex justify-center items-center z-30 absolute top-0 left-0">
+          <Spinner />
+        </div>
+      )}
+      <div className="w-screen flex flex-col items-center justify-center p-5 h-screen bg-gray-100">
         {!isLoading && employees && employees?.data?.length > 0 ? (
           <Tree
             lineWidth={'3px'}
             lineColor={'black'}
             lineBorderRadius={'10px'}
-            label={<ChartItem label="CEO" version={1} />}
+            label={<ChartItem className="bg-red-500" label="CEO" version={1} />}
           >
             {employees?.data?.map(employee => {
               if (employee?.role === 'MANAGER') {
@@ -61,9 +66,13 @@ export const Chart = () => {
                       <ChartItem
                         label={employee?.name}
                         version={employee?.version}
+                        className="bg-red-500"
                         onClick={() => {
-                          setShowModal(true)
-                          setItemSelected(employee)
+                          // setShowModal(true)
+                          // setItemSelected(employee)
+                          window.alert(
+                            "You can't edit a manager, please edit the employee"
+                          )
                         }}
                       />
                     }
@@ -93,6 +102,18 @@ export const Chart = () => {
         ) : (
           <h2>{`There aren't any employees`}</h2>
         )}
+      </div>
+
+      <div className="absolute bottom-20 right-20 w-auto h-16 px-5 py-3 flex justify-center items-center text-white font-bold gap-3">
+        <span className="bg-opacity-70 bg-red-500 w-auto px-5 py-2 rounded-lg flex justify-center items-center">
+          Manager
+        </span>
+        <span className="bg-opacity-70 bg-orange-400 w-auto px-5 py-2 rounded-lg flex justify-center items-center">
+          You can click on any employee to edit it
+        </span>
+        <span className="bg-opacity-70 bg-green-500 flex justify-center items-center rounded-lg w-auto px-5 py-2">
+          Version
+        </span>
       </div>
     </>
   )

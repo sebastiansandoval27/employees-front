@@ -1,16 +1,22 @@
 # Proceso de creación del proyecto!
 
+<br />
 ## **Idea**
 
-La idea principal del proyecto es la de organizar la jerarquía de empleados de una empresa, de tal manera que se pueda visualizar la estructura de la empresa y los empleados que la conforman.
-Además de incluir un versionamiento de los empleados, de tal manera que se pueda ver el historial de cambios de un empleado en específico.
-Para esto, se creará una aplicación web que permita visualizar la jerarquía de empleados y el historial de cambios de un empleado en específico.
+La idea principal del proyecto es la de organizar la jerarquía de empleados de una
+empresa, de tal manera que se pueda visualizar la estructura de la empresa y los
+empleados que la conforman. Además de incluir un versionamiento de los empleados,
+de tal manera que se pueda ver el historial de cambios de un empleado en específico.
+Para esto, se creará una aplicación web que permita visualizar la jerarquía de empleados
+y el historial de cambios de un empleado en específico.
 
 ### **Explicación modelo base de datos**
 
-El modelo de base de datos está compuesto por dos tablas, la tabla de empleados y la tabla de jerarquía de empleados.
-La tabla de empleados contiene la información de los empleados, como su nombre, su rol y su versión.
-La tabla de jerarquía de empleados contiene la información de la jerarquía de los empleados, como el empleado y su manager, además de la versión de la jerarquía.
+El modelo de base de datos está compuesto por dos tablas, la tabla de empleados
+y la tabla de jerarquía de empleados. La tabla de empleados contiene la
+información de los empleados, como su nombre, su rol y su versión. La tabla de
+jerarquía de empleados contiene la información de la jerarquía de los empleados,
+como el empleado y su manager, además de la versión de la jerarquía.
 
 - Se presentan dos relaciones entre las tablas, la relación de empleado y jerarquía de empleado, y la relación de manager y jerarquía de empleado.
 
@@ -50,9 +56,10 @@ tal manera que se pueda ver el historial de cambios de un empleado en específic
 <br />
 <br />
 **Por ejemplo:** <br /> <br />
-**Empleado 1** es un Manager **Empleado 2** es un subordinado de **Empleado 1** **Empleado
-3** es un subordinado de **Empleado 2** Si quiero convertir al **Empleado 2** en
-un Manager, se debe actualizar el rol de **Empleado 2** a Manager, y se debe crear
-una nueva versión de la jerarquía de empleados, donde **Empleado 2** es un Manager,
-**Empleado 1** es su subordinado y **Empleado 3** es un subordinado de **Empleado
-2**.
+**Empleado 1** es un Manager <br /> <br />
+**Empleado 2** es un subordinado de **Empleado 1** <br /> <br />
+**Empleado 3** es un subordinado de **Empleado 1** <br /> <br />
+Si quiero convertir al **Empleado 2** en un Manager, se debe actualizar el rol
+de **Empleado 2** a Manager, y se debe crear una nueva versión de la jerarquía
+de empleados, donde **Empleado 2** es un Manager y tanto **Empleado 1** como
+**Empleado 3** serán sus subordinados.

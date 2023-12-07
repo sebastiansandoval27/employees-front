@@ -49,25 +49,6 @@ export const Modal: React.FC<ModalProps> = ({ employee, closeModal }) => {
             <h2 className="my-2">
               {employee.name} - {employee.role}
             </h2>
-            <div className="w-full flex flex-col items-center justify-center gap-3 mt-2">
-              <label className="block text-sm font-medium text-gray-900 w-full">
-                Select the new role
-              </label>
-              <select
-                id="roles"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                name="roles"
-                onChange={handleChange}
-                value={role}
-              >
-                {roles.map(role => (
-                  <option key={role} value={role}>
-                    {role}
-                  </option>
-                ))}
-              </select>
-            </div>
-
             <button
               className="w-full px-5 py-2 rounded-lg mt-2 text-center flex justify-center items-center bg-purple-500 text-white font-bold
               disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed
@@ -75,7 +56,7 @@ export const Modal: React.FC<ModalProps> = ({ employee, closeModal }) => {
               type="submit"
               disabled={employeeMutation.isLoading}
             >
-              Submit
+              Set as Manager
             </button>
           </form>
         </div>

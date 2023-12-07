@@ -15,11 +15,13 @@ export const ChartItem: React.FC<ChartItemProps> = ({
     <div
       className={`bg-orange-400 text-white rounded-lg inline-block cursor-pointer hover:bg-orange-700 transition-all duration-300 ${
         className ? className : ''
-      }`}
+      } w-[7.5rem] `}
       onClick={onClick}
     >
       <div className="flex justify-between items-center relative w-full h-full p-2">
-        <span className="text-center w-full h-full">{label}</span>
+        <span className="text-center w-full h-full text-xl font-bold line-clamp-1">
+          {label}
+        </span>
         <span className="flex justify-center items-center w-[1.25rem] h-[1.25rem] p-[.3125rem] rounded-full text-center absolute -top-[.3125rem] -right-[.3125rem] z-10 bg-green-500">
           {version}
         </span>
